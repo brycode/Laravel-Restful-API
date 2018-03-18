@@ -16,3 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::group(['prefix'=>'v1'],function(){
+  Route::resource('meeting','API\v1\MeetingController',[
+    'except'=>['create','edit']
+  ]);
+  Route::resource('meetingdetail','API\v1\MeetingDetailController',[
+    'except'=>['create','edit','update']
+  ]);
+});
